@@ -36,4 +36,24 @@ public class DateAPITest extends TestCase {
         assertTrue("Datetimes are different!", new ATPDatetime().equals(new ATPDatetime(System.currentTimeMillis())));
     }
 
+    public void testOverflowCreation() {
+
+        ATPTime time = new ATPTime(1, 61, 0);
+        assertTrue("Wrong hour, should be 2 instead of " + time.getHour() + "(No overflow)", time.getHour() == 2);
+
+        time = new ATPTime(0, 3, 60);
+        assertTrue("Wrong minute, should be 4 instead of " + time.getMinute() + "(No overflow)", time.getMinute() == 4);
+
+        time = new ATPTime(1, 59, 61);
+        assertTrue("Wrong hour, should be 2 instead of " + time.getHour() + "(No overflow)", time.getHour() == 2);
+
+        ATPDate date = new ATPDate(32, 7, 2013);
+        assertTrue("Wrong day, should be 1 instead of " + date.getDay() + "(No overflow)", date.getDay() == 1);
+        assertTrue("Wrong Month, should be 8 instead of " + date.getMonth() + "(No overflow)", date.getMonth() == 8);
+        
+        date = new ATPDate(32, 12, 2013);
+        assertTrue("Wrong day, should be 1 instead of " + date.getDay() + "(No overflow)", date.getDay() == 1);
+        assertTrue("Wrong Month, should be 1 instead of " + date.getMonth() + "(No overflow)", date.getMonth() == 1);
+        assertTrue("Wrong Year, should be 2014 instead of " + date.getYear() + "(No overflow)", date.getYear() == 2014);
+    }
 }
