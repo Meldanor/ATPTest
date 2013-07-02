@@ -66,6 +66,9 @@ public class DateAPITest extends TestCase {
         assertTrue("[TIME]: 12:00 have to be before 13:00, but wasn't!", firstTime.before(secondTime));
         assertFalse("[TIME]: 12:00 cannot be after 13:00, but was!", firstTime.after(secondTime));
 
+        assertTrue("12:00 wasn't the same as it self", firstTime.equals(firstTime));
+        secondTime.setHour(12);
+        assertTrue("12:00 wasn't the same as 12:00", firstTime.equals(firstTime));
         assertFalse("[TIME]: 12:00 cannot be before 12:00 (See interface specification), but was!", firstTime.after(firstTime));
         assertFalse("[TIME]: 12:00 cannot be after 12:00 (See interface specification), but was!", firstTime.before(firstTime));
 
@@ -76,6 +79,9 @@ public class DateAPITest extends TestCase {
         assertTrue("[DATE]: 10.02.2013 have to be before 11.02.2013, but wasn't!", firstDate.before(secondDate));
         assertFalse("[DATE]: 10.02.2013 cannot be after 11.02.2013, but was!", firstDate.after(secondDate));
 
+        assertTrue("10.02.2013 wasn't the same as it self", firstDate.equals(firstDate));
+        secondDate.setDay(10);
+        assertTrue("10.02.2013 wasn't the same as 10.02.2013", firstDate.equals(secondDate));
         assertFalse("[DATE]: 10.02.2013 cannot be before 11.02.2013 (See interface specification), but was!", firstDate.after(firstDate));
         assertFalse("[DATE]: 10.02.2013 cannot be after 11.02.2013 (See interface specification), but was!", firstDate.before(firstDate));
 
@@ -97,5 +103,9 @@ public class DateAPITest extends TestCase {
 
         assertFalse("[DATETIME]: 10.02.2013 cannot be before 11.02.2013 (See interface specification), but was!", firstDatetime.after(firstDatetime));
         assertFalse("[DATETIME]: 10.02.2013 cannot be after 11.02.2013 (See interface specification), but was!", firstDatetime.before(firstDatetime));
+
+        assertTrue("10.02.2013 12:00 wasn't the same as it self", firstDatetime.equals(firstDatetime));
+        secondDatetime.setDay(10);
+        assertTrue("10.02.2013 12:00 wasn't the same as 10.02.2013 12:00", firstDatetime.equals(secondDatetime));
     }
 }
