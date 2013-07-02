@@ -108,4 +108,19 @@ public class DateAPITest extends TestCase {
         secondDatetime.setDay(10);
         assertTrue("10.02.2013 12:00 wasn't the same as 10.02.2013 12:00", firstDatetime.equals(secondDatetime));
     }
+
+    public void testDiff() {
+
+        ATPTime time = new ATPTime(0, 15, 0);
+        ATPTime time2 = new ATPTime(0, 5, 0);
+        ATPTime timeDiff = time.diff(time2);
+        assertTrue("TimeDiff have to be 10 Minutes but was " + timeDiff.getHour(), timeDiff.getMinute() == 10);
+        assertTrue("TimeDiff must be symmetric! ", timeDiff.equals(time2.diff(time)));
+
+        ATPDate date = new ATPDate(04, 02, 2013);
+        ATPDate date2 = new ATPDate(04, 02, 2014);
+        ATPDate dateDiff = date.diff(date2);
+        assertTrue("DateDiff have to be 1 Year but was " + dateDiff.getYear(), dateDiff.getYear() == 1);
+        assertTrue("DateDiff must be symmetric! ", dateDiff.equals(date2.diff(date)));
+    }
 }
